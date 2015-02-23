@@ -1,0 +1,30 @@
+{
+  "name": "biojs-vis-PSICQUICGraph",
+  "version": "1.0.0",
+  "description": "A graph visualisation tool for PSICQUIC servers",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmvillaveces/biojs-vis-PSICQUICGraph.git"
+  },
+  "author": "jmvillaveces",
+  "license": "Apache 2",
+  "bugs": {
+    "url": "https://github.com/jmvillaveces/biojs-vis-PSICQUICGraph/issues"
+  },
+  "homepage": "https://github.com/jmvillaveces/biojs-vis-PSICQUICGraph",
+  "devDependencies": {
+    "gulp-browserify": "^0.5.1",
+    "gulp-concat": "^2.5.2",
+    "gulp-jshint": "^1.9.2",
+    "gulp-rename": "^1.2.0",
+    "gulp-uglify": "^1.1.0"
+  },
+  "dependencies": {
+    "biojs-rest-psicquic": "^1.2.0",
+    "cytoscape": "^2.3.9"
+  }
+}
