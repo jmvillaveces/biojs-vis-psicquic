@@ -4,6 +4,42 @@
     </head>
     <body></body>
     <script>
+        
+        var cyopts = {
+            
+            ready: function(){ 
+                console.log('rendering finished.') 
+            },
+            headless: false,
+            renderer: {
+                name: "canvas"
+            },
+          style: cytoscape.stylesheet()
+            .selector('node')
+              .css({
+                'height': 80,
+                'width': 80,
+                'background-fit': 'cover',
+                'border-color': '#000',
+                'border-width': 3,
+                'border-opacity': 0.5
+              })
+            .selector('edge')
+              .css({
+                'width': 6,
+                'target-arrow-shape': 'triangle',
+                'line-color': '#ffaaaa',
+                'target-arrow-color': '#ffaaaa'
+              })
+        ,
+        layout: {
+            name: 'breadthfirst',
+            directed: true,
+            padding: 10
+          }
+        };
+        
+        
         var url = 'http://www.ebi.ac.uk/Tools/webservices/psicquic/intact/webservices/current/search';
         
         var proxy = function(url){
@@ -14,6 +50,7 @@
             .params({firstResult:1, maxResults:5})
             .query('species:human')
             .proxy(proxy)
+            .cyopts(cyopts)
             .update();
     </script>
 </html>
