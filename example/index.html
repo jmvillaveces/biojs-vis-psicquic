@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <script src="../dist/biojsvispsicquic.js"></script>
+    </head>
+    <body></body>
+    <script>
+        var url = 'http://www.ebi.ac.uk/Tools/webservices/psicquic/intact/webservices/current/search';
+        
+        var proxy = function(url){
+            return 'https://cors-anywhere.herokuapp.com/'+url;
+        };
+        
+        biojsvispsicquic.url(url)
+            .params({firstResult:1, maxResults:5})
+            .query('species:human')
+            .proxy(proxy)
+            .update();
+    </script>
+</html>
