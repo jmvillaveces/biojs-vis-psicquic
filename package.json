@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/jmvillaveces/biojs-vis-PSICQUICGraph",
   "devDependencies": {
+    "biojs-io-mitab": "0.0.4",
     "gulp-browserify": "^0.5.1",
     "gulp-concat": "^2.5.2",
     "gulp-jshint": "^1.9.2",

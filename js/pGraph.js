@@ -1,6 +1,7 @@
 //Libraries
 var psicquic = require('biojs-rest-psicquic');
 var cytoscape = require('cytoscape');
+var MITab = require('biojs-io-mitab');
 
 //Private members
 var _selector = 'body';
@@ -68,7 +69,8 @@ pGraph.update = function(){
     if(_div === null) _initSelector(_selector);
     
     psicquic.url(_url).params(_params).method(_method).proxy(_proxy).query(_query, function(err, resp, body){
-        console.log(body);
+        var parsed = MITab.parse(body);
+        console.log(parsed);
     });
 };
 
