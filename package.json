@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "biojs-rest-psicquic": "^1.2.0",
-    "cytoscape": "^2.3.9"
+    "cytoscape": "^2.3.9",
+    "underscore": "^1.8.2"
   }
 }
