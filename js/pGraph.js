@@ -2,10 +2,13 @@
 var psicquic = require('biojs-rest-psicquic');
 var cytoscape = require('cytoscape');
 var MITab = require('biojs-io-mitab');
+var _ = require('underscore');
 
 //Private members
-var _selector = 'body';
-var _div = null;
+var _selector = 'body', _div = null;
+
+//Cytoscape vars
+var _cyopts = {};
 
 // psicquic vars
 var _url = '', _proxy = null, _method = 'query', _params = null, _query='';
@@ -65,12 +68,32 @@ pGraph.selector = function(_){
     return pGraph;
 };
 
+//Cytoscape related options
+pGraph.cyopts = function(_){
+    if (!arguments.length)
+        return _cyopts;
+    
+    _cyopts = _;
+    return pGraph;
+};
+
 pGraph.update = function(){
     if(_div === null) _initSelector(_selector);
     
     psicquic.url(_url).params(_params).method(_method).proxy(_proxy).query(_query, function(err, resp, body){
         var parsed = MITab.parse(body);
-        console.log(parsed);
+        
+        _cyopts.elements = {
+            nodes: _.map(parsed.nodes, function(n){
+                return {data:n};
+            }),
+            edges : _.map(parsed.links, function(n){
+                return {data:n};
+            })
+        };
+        
+        _cyopts.container = _div;
+        var cy = cytoscape(_cyopts);
     });
 };
 
