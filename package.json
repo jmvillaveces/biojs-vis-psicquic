@@ -1,6 +1,6 @@
 {
   "name": "biojs-vis-psicquic",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A graph visualisation tool for PSICQUIC servers",
   "main": "index.js",
   "scripts": {
