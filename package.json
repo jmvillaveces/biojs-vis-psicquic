@@ -1,6 +1,6 @@
 {
   "name": "biojs-vis-psicquic",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "A graph visualisation tool for PSICQUIC servers",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,8 @@
   "keywords": [
     "interactions",
     "psicquic",
-    "protein"
+    "protein",
+    "biojs"
   ],
   "author": "jmVillaveces",
   "license": "Apache 2.0",
