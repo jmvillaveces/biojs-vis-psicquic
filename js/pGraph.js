@@ -100,7 +100,6 @@ pGraph.update = function(){
         elements = _.isFunction(_intercept) ? _intercept(elements) : elements;
         
         _cyopts.elements = elements;
-        _cyopts.container = _div;
         var cy = cytoscape(_cyopts);
     });
 };
