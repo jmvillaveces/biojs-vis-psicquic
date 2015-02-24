@@ -5,7 +5,7 @@ var MITab = require('biojs-io-mitab');
 var _ = require('underscore');
 
 //Private members
-var _selector = 'body', _div = null;
+var _selector = 'body', _div = null, _intercept = null;
 
 //Cytoscape vars
 var _cyopts = {};
@@ -14,12 +14,14 @@ var _cyopts = {};
 var _url = '', _proxy = null, _method = 'query', _params = null, _query='';
 
 var _initSelector = function(selector){
-    _div = document.querySelector(selector);
+    _div = document.createElement('div');
     _div.style.left = 0;
     _div.style.top = 0;
     _div.style.width = '100%';
     _div.style.height = '100%';
     _div.style.position = 'absolute';
+    
+    document.querySelector(selector).appendChild(_div);
 };
 
 // Public members
@@ -77,21 +79,39 @@ pGraph.cyopts = function(_){
     return pGraph;
 };
 
+//gets executed just before rendering the graph, it allow user to transform the data
+pGraph.intercept = function(_){
+    if (!arguments.length)
+        return _intercept;
+    
+    _intercept = _;
+    return pGraph;
+};
+
 pGraph.update = function(){
     if(_div === null) _initSelector(_selector);
     
     psicquic.url(_url).params(_params).method(_method).proxy(_proxy).query(_query, function(err, resp, body){
         var parsed = MITab.parse(body);
         
-        _cyopts.elements = {
-            nodes: _.map(parsed.nodes, function(n){
-                return {data:n};
-            }),
-            edges : _.map(parsed.links, function(n){
-                return {data:n};
-            })
+        var elements = {
+                nodes: _.map(parsed.nodes, function(n){
+                    n.weight = 0;
+                    return {data:n};
+                }),
+                edges : _.map(parsed.links, function(l){
+                    var t = _.find(parsed.nodes, function(n){return n.id === l.target;});
+                    var s = _.find(parsed.nodes, function(n){return n.id === l.source;});
+                
+                    t.weight = t.weight + 1;
+                    s.weight = s.weight + 1;
+                    return {data:l};
+                })
         };
         
+        elements = _.isFunction(_intercept) ? _intercept(elements) : elements;
+        
+        _cyopts.elements = elements;
         _cyopts.container = _div;
         var cy = cytoscape(_cyopts);
     });
