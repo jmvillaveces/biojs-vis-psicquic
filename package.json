@@ -1,6 +1,6 @@
 {
   "name": "biojs-vis-psicquic",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "A graph visualisation tool for PSICQUIC servers",
   "main": "index.js",
   "scripts": {
@@ -8,25 +8,30 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jmvillaveces/biojs-vis-PSICQUICGraph.git"
+    "url": "https://github.com/jmvillaveces/biojs-vis-psicquic.git"
   },
-  "author": "jmvillaveces",
-  "license": "Apache 2",
+  "keywords": [
+    "interactions",
+    "psicquic",
+    "protein"
+  ],
+  "author": "jmVillaveces",
+  "license": "Apache 2.0",
   "bugs": {
-    "url": "https://github.com/jmvillaveces/biojs-vis-PSICQUICGraph/issues"
+    "url": "https://github.com/jmvillaveces/biojs-vis-psicquic/issues"
   },
-  "homepage": "https://github.com/jmvillaveces/biojs-vis-PSICQUICGraph",
-  "devDependencies": {
+  "homepage": "https://github.com/jmvillaveces/biojs-vis-psicquic",
+  "dependencies": {
     "biojs-io-mitab": "0.0.4",
+    "biojs-rest-psicquic": "^1.2.0",
+    "cytoscape": "^2.3.9",
+    "underscore": "^1.8.2"
+  },
+  "devDependencies": {
     "gulp-browserify": "^0.5.1",
     "gulp-concat": "^2.5.2",
     "gulp-jshint": "^1.9.2",
     "gulp-rename": "^1.2.0",
     "gulp-uglify": "^1.1.0"
-  },
-  "dependencies": {
-    "biojs-rest-psicquic": "^1.2.0",
-    "cytoscape": "^2.3.9",
-    "underscore": "^1.8.2"
   }
 }
