@@ -8,9 +8,17 @@
             }
             return elements;
         };
-        
+
+        // Create container div
+        var yourDiv = document.getElementById('snippetDiv');
+            yourDiv.style.left = 0;
+            yourDiv.style.top = 0;
+            yourDiv.style.width = "100%";
+            yourDiv.style.height = "100%";
+            yourDiv.style.position = "absolute";
+
         var cyopts = {
-            
+            container:yourDiv,
             ready: function(){ 
                 console.log('rendering finished.') 
             },

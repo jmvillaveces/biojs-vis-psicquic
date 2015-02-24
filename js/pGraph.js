@@ -5,24 +5,13 @@ var MITab = require('biojs-io-mitab');
 var _ = require('underscore');
 
 //Private members
-var _selector = 'body', _div = null, _intercept = null;
+var _div = null, _intercept = null;
 
 //Cytoscape vars
 var _cyopts = {};
 
 // psicquic vars
 var _url = '', _proxy = null, _method = 'query', _params = null, _query='';
-
-var _initSelector = function(selector){
-    _div = document.createElement('div');
-    _div.style.left = 0;
-    _div.style.top = 0;
-    _div.style.width = '100%';
-    _div.style.height = '100%';
-    _div.style.position = 'absolute';
-    
-    document.querySelector(selector).appendChild(_div);
-};
 
 // Public members
 var pGraph = function(){};
@@ -89,7 +78,6 @@ pGraph.intercept = function(_){
 };
 
 pGraph.update = function(){
-    if(_div === null) _initSelector(_selector);
     
     psicquic.url(_url).params(_params).method(_method).proxy(_proxy).query(_query, function(err, resp, body){
         var parsed = MITab.parse(body);
